@@ -44,7 +44,7 @@
                 <th>Title</th>
                 <th>Content</th>
                 <th>Created by</th>
-                <th>Comment Add</th>
+                <th>Comment Add Any pot</th>
             </tr>
         </thead>
         <tbody>
@@ -55,7 +55,7 @@
                     <td>{{ Str::limit($post->body, 50) }}</td>
                     <td>{{ $post->user->name }}</td> <!-- Displaying user name -->
                     <td>
-                        <a class="nav-link" href="showcomment">Add Commment <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="showcomment/{{$post->id}}">Add Commment <span class="sr-only">(current)</span></a>
                     </td>
                 </tr>
             @endforeach

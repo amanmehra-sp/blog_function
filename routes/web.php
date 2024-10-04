@@ -24,7 +24,7 @@ Route::post('/add/user', [ PostController::class, 'adduser'])->name('adduser');
 Route::get('showpost', [ PostController::class, 'postshow' ])->name('postshow');
 Route::post('/add/post', [ PostController::class, 'addpost'])->name('addpost');
 
-Route::get('showcomment', [ PostController::class, 'viewshowcomment']);
+Route::get('showcomment/{id}', [ PostController::class, 'viewshowcomment']);
 Route::get('getallcomment', [ PostController::class, 'allcomment']);
 Route::post('addcomment', [ PostController::class, 'addcomment'])->name('addComment');
 Route::delete('/users/{id}', [ PostController::class, 'destroy'])->name('users.destroy');

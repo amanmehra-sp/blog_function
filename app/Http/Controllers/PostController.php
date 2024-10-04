@@ -31,14 +31,18 @@ class PostController extends Controller
 
     public function allcomment()
     {
+
         $comments = Comment::all();
         return view('getallcomment', compact('comments')); // Pass allcomment to the view
+
     }
-    public function viewshowcomment()
+    public function viewshowcomment($id)
     {
 
         $posts = Post::all(); // Fetch all posts
-        return view('comment', compact('posts')); // Pass posts to the view
+        $users = User::all();
+        return view('comment', compact('posts','users')); // Pass posts to the view
+
     }
 
     public function postshow()
@@ -46,24 +50,25 @@ class PostController extends Controller
 
         $users = User::orderBy('id', 'desc')->get();
         return view('postadd', compact('users')); // Pass users to the view
+
     }
 
     public function adduser(Request $request)
     {
 
-        $messages = [
-            'email.unique' => 'The email has already been taken. Please choose another one.',
-            'password.required' => 'The password field is required.',
-            'password.min' => 'The password must be at least 8 characters long.',
-            'password.confirmed' => 'The password confirmation does not match.',
-        ];
+        // $messages = [
+        //     'email.unique' => 'The email has already been taken. Please choose another one.',
+        //     'password.required' => 'The password field is required.',
+        //     'password.min' => 'The password must be at least 8 characters long.',
+        //     'password.confirmed' => 'The password confirmation does not match.',
+        // ];
     
-        // Validate the incoming request data
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|min:8|confirmed', // Minimum length and confirmation rule
-        ], $messages);
+        // // Validate the incoming request data
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'password' => 'required|min:8|confirmed', // Minimum length and confirmation rule
+        // ], $messages);
 
         $user = new User();
         $user->name = $request->name;
