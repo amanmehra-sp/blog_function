@@ -18,6 +18,14 @@ class PostController extends Controller
 
     }
 
+   public function blogview($id){
+
+    //  $blog =  Post::with('comments')->where('id' , $id)->get();
+     $blog =  Post::with('comments')->where('id', $id)->first();
+
+     return view('blogview' ,compact('blog'));
+   }
+
     public function usershow()
     {
         return view('user'); // Pass uer to the view
@@ -53,22 +61,16 @@ class PostController extends Controller
 
     }
 
-    public function adduser(Request $request)
+    public function allcommentlisting($id)
     {
 
-        // $messages = [
-        //     'email.unique' => 'The email has already been taken. Please choose another one.',
-        //     'password.required' => 'The password field is required.',
-        //     'password.min' => 'The password must be at least 8 characters long.',
-        //     'password.confirmed' => 'The password confirmation does not match.',
-        // ];
-    
-        // // Validate the incoming request data
-        // $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|min:8|confirmed', // Minimum length and confirmation rule
-        // ], $messages);
+        $comments = Comment::all();
+        return view('lisstingallcomment', compact('comments')); // Pass allcomment to the view
+
+    }
+
+    public function adduser(Request $request)
+    {
 
         $user = new User();
         $user->name = $request->name;

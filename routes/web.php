@@ -29,6 +29,11 @@ Route::get('getallcomment', [ PostController::class, 'allcomment']);
 Route::post('addcomment', [ PostController::class, 'addcomment'])->name('addComment');
 Route::delete('/users/{id}', [ PostController::class, 'destroy'])->name('users.destroy');
 Route::get('/search-posts', [ PostController::class, 'search'])->name('searchPosts');
+Route::get('viewallcomment/{id}', [ PostController::class, 'allcommentlisting']);
+Route::get('/blogview/{id}',[PostController::class , 'blogview'])->name('blog');
+
+
+
 
 
 

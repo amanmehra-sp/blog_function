@@ -30,7 +30,7 @@
           </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" action="{{ route('searchPosts') }}" method="GET">
-        <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search title" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
@@ -44,18 +44,18 @@
                 <th>Title</th>
                 <th>Content</th>
                 <th>Created by</th>
-                <th>Comment Add Any pot</th>
+                <th>Comment Add</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($posts as $post)
                 <tr>
                     <td>{{ $post->id }}</td>
-                    <td>{{ $post->title }}</td>
+                    <td><a href="{{route ('blog', $post->id)}}">{{ $post->title }}</a></td>
                     <td>{{ Str::limit($post->body, 50) }}</td>
                     <td>{{ $post->user->name }}</td> <!-- Displaying user name -->
                     <td>
-                        <a class="nav-link" href="showcomment/{{$post->id}}">Add Commment <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="showcomment/{{$post->id}}">add comment <span class="sr-only">(current)</span></a>
                     </td>
                 </tr>
             @endforeach
